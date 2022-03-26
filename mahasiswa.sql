@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Mar 2022 pada 04.08
+-- Waktu pembuatan: 26 Mar 2022 pada 05.56
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.4.25
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `service_komputer`
+-- Struktur dari tabel `data_barang`
 --
 
-CREATE TABLE `service_komputer` (
+CREATE TABLE `data_barang` (
   `kode_barang` int(11) NOT NULL,
   `nama` text NOT NULL,
   `stok` int(11) NOT NULL,
@@ -35,11 +35,35 @@ CREATE TABLE `service_komputer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `service_komputer`
+-- Dumping data untuk tabel `data_barang`
 --
 
-INSERT INTO `service_komputer` (`kode_barang`, `nama`, `stok`, `harga`) VALUES
-(1001, 'RAM DDR3 4gb/8GB/16GB 16000 MHz', 100, 15000);
+INSERT INTO `data_barang` (`kode_barang`, `nama`, `stok`, `harga`) VALUES
+(200, 'RAM DDR3 4gb/8GB/16GB', 100, 198000),
+(1001, 'RAM DDR3 4gb/8GB/16GB 16000 MHz', 7271, 15000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_penjualan`
+--
+
+CREATE TABLE `data_penjualan` (
+  `kode_penjualan` int(11) NOT NULL,
+  `kode_barang` int(11) NOT NULL,
+  `nama_barang` varchar(20) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `pembeli` text NOT NULL,
+  `total_belanja` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `data_penjualan`
+--
+
+INSERT INTO `data_penjualan` (`kode_penjualan`, `kode_barang`, `nama_barang`, `jumlah`, `pembeli`, `total_belanja`) VALUES
+(6, 1001, 'RAM DDR3 4gb/8GB/16G', 30, 'Fahrul', 450000),
+(7, 1001, 'RAM DDR3 4gb/8GB/16G', 4000, 'Usman Habib', 60000000);
 
 -- --------------------------------------------------------
 
@@ -70,10 +94,16 @@ INSERT INTO `tbl_nilai` (`nim`, `nama`, `uts`, `uas`, `tugas`, `na`, `status`) V
 --
 
 --
--- Indeks untuk tabel `service_komputer`
+-- Indeks untuk tabel `data_barang`
 --
-ALTER TABLE `service_komputer`
+ALTER TABLE `data_barang`
   ADD PRIMARY KEY (`kode_barang`);
+
+--
+-- Indeks untuk tabel `data_penjualan`
+--
+ALTER TABLE `data_penjualan`
+  ADD PRIMARY KEY (`kode_penjualan`);
 
 --
 -- Indeks untuk tabel `tbl_nilai`
@@ -86,10 +116,16 @@ ALTER TABLE `tbl_nilai`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `service_komputer`
+-- AUTO_INCREMENT untuk tabel `data_barang`
 --
-ALTER TABLE `service_komputer`
+ALTER TABLE `data_barang`
   MODIFY `kode_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
+
+--
+-- AUTO_INCREMENT untuk tabel `data_penjualan`
+--
+ALTER TABLE `data_penjualan`
+  MODIFY `kode_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
